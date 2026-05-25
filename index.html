@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Викторина — Экзамен</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Subject Selection -->
+        <div id="subject-select" class="screen active">
+            <h1>Выбери предмет</h1>
+            <p class="subtitle">Подготовка к экзамену</p>
+            <div class="modes">
+                <div class="mode-card" onclick="selectSubject('tmo')">
+                    <div class="mode-icon">🏃</div>
+                    <h2>ТМО</h2>
+                    <p>Теория и методика физвоспитания дошкольников</p>
+                </div>
+                <div class="mode-card" onclick="selectSubject('op')">
+                    <div class="mode-icon">📚</div>
+                    <h2>ОП</h2>
+                    <p>Основы педагогики — 40 вопросов</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Landing TMO -->
+        <div id="landing-tmo" class="screen">
+            <h1>ТМО — Физвоспитание дошкольников</h1>
+            <p class="subtitle">МДК 01.02 / МДК 01.03</p>
+            <div class="modes">
+                <div class="mode-card" onclick="startQuiz('tmo-all')">
+                    <div class="mode-icon">📋</div>
+                    <h2>Все вопросы</h2>
+                    <p>Полный вопрос — мини-ответ (62)</p>
+                </div>
+                <div class="mode-card" onclick="startQuiz('tmo-blitz')">
+                    <div class="mode-icon">⚡</div>
+                    <h2>Блиц — 10 вопросов</h2>
+                    <p>Быстрая проверка мини-ответов</p>
+                </div>
+                <div class="mode-card" onclick="startQuiz('tmo-short-all')">
+                    <div class="mode-icon">📝</div>
+                    <h2>Вопросы-кратко</h2>
+                    <p>Краткие вопросы — все</p>
+                </div>
+                <div class="mode-card" onclick="startQuiz('tmo-short-blitz')">
+                    <div class="mode-icon">🎯</div>
+                    <h2>Блиц-кратко</h2>
+                    <p>Краткие вопросы — 10</p>
+                </div>
+            </div>
+            <div class="order-toggle">
+                <label class="toggle-label">
+                    <input type="checkbox" id="randomOrderTmo" checked>
+                    <span class="toggle-slider"></span>
+                    <span class="toggle-text">Случайный порядок</span>
+                </label>
+            </div>
+            <button class="btn-back" onclick="goBack()">← Назад к выбору предмета</button>
+        </div>
+
+        <!-- Landing OP -->
+        <div id="landing-op" class="screen">
+            <h1>ОП — Основы педагогики</h1>
+            <p class="subtitle">ОП.02 — 40 вопросов</p>
+            <div class="modes">
+                <div class="mode-card" onclick="startQuiz('op-all')">
+                    <div class="mode-icon">📋</div>
+                    <h2>Все вопросы</h2>
+                    <p>Полный вопрос — мини-ответ (40)</p>
+                </div>
+                <div class="mode-card" onclick="startQuiz('op-blitz')">
+                    <div class="mode-icon">⚡</div>
+                    <h2>Блиц — 10 вопросов</h2>
+                    <p>Быстрая проверка мини-ответов</p>
+                </div>
+            </div>
+            <div class="order-toggle">
+                <label class="toggle-label">
+                    <input type="checkbox" id="randomOrderOp" checked>
+                    <span class="toggle-slider"></span>
+                    <span class="toggle-text">Случайный порядок</span>
+                </label>
+            </div>
+            <button class="btn-back" onclick="goBack()">← Назад к выбору предмета</button>
+        </div>
+
+        <!-- Quiz -->
+        <div id="quiz" class="screen">
+            <div class="quiz-header">
+                <div class="progress-info">
+                    <span id="questionNum">1</span> / <span id="totalQuestions">67</span>
+                </div>
+                <div class="score-info">Верно: <span id="score">0</span></div>
+                <button class="btn-quit" onclick="quitQuiz()">✕</button>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="question-block">
+                <h2 id="questionText"></h2>
+            </div>
+            <div class="answers" id="answers"></div>
+            <div class="feedback" id="feedback"></div>
+            <button class="btn-next" id="btnNext" onclick="nextQuestion()" style="display:none;">Следующий вопрос →</button>
+        </div>
+
+        <!-- Results -->
+        <div id="results" class="screen">
+            <div class="results-card">
+                <h1>Результаты</h1>
+                <div class="results-score" id="resultsScore"></div>
+                <div class="results-message" id="resultsMessage"></div>
+                <div class="results-actions">
+                    <button class="btn-primary" onclick="goToSubjects()">Выбрать предмет</button>
+                    <button class="btn-primary" onclick="goToModes()">Выбрать режим</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="questions.js"></script>
+    <script src="questions_mini.js"></script>
+    <script src="questions_op.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
